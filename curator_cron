@@ -1,0 +1,4 @@
+PATH=/Users/bilalislam/devops/elk/curator_files
+
+* * * * *  /usr/local/bin/curator --config $PATH/curator.yml  $PATH/snapshot.yml  > /$PATH/log/snapshot.log
+* * * * *  /usr/local/bin/curator --config $PATH/curator.yml  $PATH/delete_indices.yml  > /$PATH/log/delete.log

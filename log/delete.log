@@ -1,0 +1,5 @@
+2017-11-27 15:53:00,504 INFO      Preparing Action ID: 1, "delete_indices"
+2017-11-27 15:53:00,819 INFO      Trying Action ID: 1, "delete_indices": Delete indices older than 2 days (based on index name), for logstash- prefixed indices. Ignore the error if the filter does not result in an actionable list of indices (ignore_empty_list) and exit cleanly.
+2017-11-27 15:53:01,817 INFO      Skipping action "delete_indices" due to empty list: <class 'curator.exceptions.NoIndices'>
+2017-11-27 15:53:01,817 INFO      Action ID: 1, "delete_indices" completed.
+2017-11-27 15:53:01,817 INFO      Job completed.
