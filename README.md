@@ -52,6 +52,8 @@ $ crontab -r
 
 ### Pluginler
 Elasticsearch'te snaphotlar depolamak istediğiniz yerlere göre farklılık gösteririr.
+
+- Depolama Tipleri;
      -  Disk üzerine (fs)
      -  Hadoop (Hdfs)
      -  Cloud 
