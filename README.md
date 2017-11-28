@@ -7,7 +7,7 @@
 
 Kurulum'u anlatan link aşağıda verilmiştir.Paketler Os'a göre farklılık gösterecektir. Örneğin;Centos kullanılıyorsa 'yum repo' Ubuntu gibi dağıtım kullanılıyorsa 'apt repo' ya göre kurulum yapmanız gerekmektedir.
 
-# Yan Araçların Kurumlum Adımları
+# Yan Araçların Kurulum Adımları
   Öncelikle elastic-curator ürününden bahsetmek gerekirse;Curator aracı elasticsearch indexlerinizin cli(command line interface) kullanarak yönetilmesi için python ile geliştirilmesi open source bir kütüphanedir. Bunun için ;
 
   - pip 9.0.1 
