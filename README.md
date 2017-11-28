@@ -31,7 +31,7 @@ Silmek için
 $ curator --config curator.yml delete_incides.yml
 ```
 
-gibi komut satırından kullanımı gayet basittir.Yalnız bu komutların ELK(elasticsearc-logstash-kibana) stack'inin kurulduğu makina da otomatik olarak çalışabilmesi için "cron" joblarından yaralanabiliriz.Bu arada "curator_cron" dosyasında linux'ta cron jobların nasıl tanımlandığı ile ilgili bilgi edinebilirsiniz.
+gibi komut satırından kullanımı gayet basittir.Yalnız bu komutların ELK(elasticsearch-logstash-kibana) stack'inin kurulduğu makina da otomatik olarak çalışabilmesi için "cron" joblarından yaralanabiliriz.Bu arada "curator_cron" dosyasında linux'ta cron jobların nasıl tanımlandığı ile ilgili bilgi edinebilirsiniz.
 
 # Cron Kullanım Adımları
 
@@ -51,15 +51,22 @@ $ crontab -r
 ```
 
 ### Pluginler
-
 Elasticsearch'te snaphotlar depolamak istediğiniz yerlere göre farklılık gösteririr.
-     - Disk üzerine (fs)
-     - Hadoop (Hdfs)
-     - Cloud , örnek olarak aws s3. Biz burada AWS S3 üzerine snapshotlarımız kaydediyor olacağız.
+     -  Disk üzerine (fs)
+     -  Hadoop (Hdfs)
+     -  Cloud 
 
-Aws S3'e backup almak için öncelikle şu adımları incelemeniz gerekli;
+Örnek olarak aws s3. Biz burada AWS S3 üzerine snapshotlarımız kaydediyor olacağız. Aws S3'e backup almak için öncelikle şu adımları incelemeniz gerekli;
 
-1.Tipi s3 olan bir snaphot oluşturmalısınız
+1.S3 plugin'ini kurmalısınız
+
+```sh
+$ sudo bin/elasticsearch-plugin install repository-s3
+$ bin/elasticsearch-keystore add s3.client.default.access_key
+$ bin/elasticsearch-keystore add s3.client.default.secret_key
+```
+
+2.Tipi s3 olan bir snaphot oluşturmalısınız
 
 ```sh
 PUT /_snapshot/{snapshot_name}{
@@ -72,6 +79,7 @@ PUT /_snapshot/{snapshot_name}{
     }
 }
 ```
+
 
 Yukarda belirmiş olduğumuz cron joblar zamanlamaları geldiğinde oluşan bu repoya snaphotlarınızı basacaktır.Bu sayede Disk üzerinde eski indexleriniz gereksiz yere depolamaktan kurtulacaksınız ve scale edilebilen bir yere koymuş olacaksınız.Bu da size big data yani sürekli büyüyen datayı yönetebilmeniz için kolaylık sağlıyacaktır.
 
@@ -93,4 +101,3 @@ GET http://localhost:9200/_snapshot/{snapshot_name}/_all?pretty
 3. https://www.youtube.com/watch?v=FhdcT6BQrKI&t=15s
 4. https://www.howtoforge.com/tutorial/how-to-install-elastic-stack-on-centos-7/
 5. https://crontab.guru/
-
