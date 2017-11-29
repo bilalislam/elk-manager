@@ -88,7 +88,7 @@ Yukarda belirmiş olduğumuz cron joblar zamanlamaları geldiğinde oluşan bu r
 Tabi yeri geldiğinde bu backupları tekrar restore etmek isteyebilirsiniz.
 
 ```sh
-$ curator --config curator.yml delete_incides.yml
+$ curator --config curator.yml restore.yml
 ```
 
 Hangi snapshot'ın içinde hangi index ve kaç adet index var gibi merak ettiğiniz bilgiler olacaktır.
