@@ -1,66 +1,66 @@
 
-# Kurulum Adımları
-  - İşletim sistemine göre ;
+# Installation Steps
+  - Operating Systemize ;
      - Elasticsearch 6.0.0
      - Kibana 6.0.0
      - Logstash 6.0.0  kurmalısınız. 
 
-Kurulum'u anlatan link aşağıda verilmiştir.Paketler Os'a göre farklılık gösterecektir. Örneğin;Centos kullanılıyorsa 'yum repo' Ubuntu gibi dağıtım kullanılıyorsa 'apt repo' ya göre kurulum yapmanız gerekmektedir.
+The installation url has been descripted below. Packages will vary by OS. For example, if Centos is used and 'yum repo' is used for distribution like Ubuntu, then you need to install according to 'apt repo'.
 
-# Yan Araçların Kurulum Adımları
-  Öncelikle elastic-curator ürününden bahsetmek gerekirse;Curator aracı elasticsearch indexlerinizin cli(command line interface) kullanarak yönetilmesi için python ile geliştirilmesi open source bir kütüphanedir. Bunun için ;
+# Installation Steps of Side Tools
+  First of all, if you need to talk about the elastic-curator product, the Curator tool is an open source library developed with python so that your ElasticSearch indexes can be managed using cli (command line interface). For this ;
 
   - pip 9.0.1 
   - curator 5.4.0 (Elasticsearch 6.x)
   
-kurmanız gerekmektedir.
+you need to install it.
 
-# Backup & Restore işlemleri
+# Backup & Restore Steps
 
-Tüm kurulum adımları bittikten sonra bu repoda bulunan example klasörü altından "curator" ürününün nasıl kullanıldığı ile ilgili bilgi bilgi edinebilirsiniz.
+After all the installation steps are finished, you can find out how to use the "curator" product under the example folder in this repo.
 
 ```sh
 $ curator --config curator.yml action_file.yml
 ```
-Snaphot almak için
+To get a snapshot
 ```sh
 $ curator --config curator.yml snapshot.yml
 ```
-Silmek için 
+To remove a snapshot
 ```sh
 $ curator --config curator.yml delete_incides.yml
 ```
 
-gibi komut satırından kullanımı gayet basittir.Yalnız bu komutların ELK(elasticsearch-logstash-kibana) stack'inin kurulduğu makina da otomatik olarak çalışabilmesi için "cron" joblarından yaralanabiliriz.Bu arada "curator_cron" dosyasında linux'ta cron jobların nasıl tanımlandığı ile ilgili bilgi edinebilirsiniz.
+(ElasticSearch-LogStash-Kibana) stacks can only be run automatically on the machine where it is installed. In the meantime, the "curator_cron" file contains information about how to define cron jobs in linux tha you can learn.
 
-# Cron Kullanım Adımları
+# Cron Usage Steps
 
-Cron Yaratmak için
+To create a cron
 ```sh
 $ crontab -e 
 ```
 
-Cron Listelemek için
+To list a cron
 ```sh
 $ crontab -l
 ```
 
-Cron Silmek için
+To remove a cron
 ```sh
 $ crontab -r
 ```
 
-### Pluginler
-Elasticsearch'te snaphotlar depolamak istediğiniz yerlere göre farklılık gösteririr.
+### Plugins
+Snapshots at Elasticsearch will vary depending on where you want to store them.
 
-- Depolama Tipleri;
-     -  Disk üzerine (fs)
-     -  Hadoop (Hdfs)
+- Storage Types;
+     -  File System (fs)
+     -  Hadoop File System(Hdfs)
      -  Cloud 
 
-Örnek olarak aws s3. Biz burada AWS S3 üzerine snapshotlarımız kaydediyor olacağız. Aws S3'e backup almak için öncelikle şu adımları incelemeniz gerekli;
+We will use aws s3 for get a snapshots.First of all you need to follow these steps for it below;
 
-1.S3 plugin'ini kurmalısınız
+1.You should install the S3 plugin
 
 ```sh
 $ sudo bin/elasticsearch-plugin install repository-s3
@@ -68,7 +68,7 @@ $ bin/elasticsearch-keystore add s3.client.default.access_key
 $ bin/elasticsearch-keystore add s3.client.default.secret_key
 ```
 
-2.Tipi s3 olan bir snaphot oluşturmalısınız
+2.You must create a snapshot of type S3
 
 ```sh
 PUT /_snapshot/{snapshot_name}{
@@ -83,21 +83,21 @@ PUT /_snapshot/{snapshot_name}{
 ```
 
 
-Yukarda belirmiş olduğumuz cron joblar zamanlamaları geldiğinde oluşan bu repoya snaphotlarınızı basacaktır.Bu sayede Disk üzerinde eski indexleriniz gereksiz yere depolamaktan kurtulacaksınız ve scale edilebilen bir yere koymuş olacaksınız.Bu da size big data yani sürekli büyüyen datayı yönetebilmeniz için kolaylık sağlıyacaktır.
+The cron jobs that we show up above will print out these repo snapshots when they arrive. On this page you will get rid of the old indexes unnecessary on the disk and you will be put in a place that can be scaled. This will give you the convenience to manage big data.
 
-Tabi yeri geldiğinde bu backupları tekrar restore etmek isteyebilirsiniz.
+Of course, you may want to restore these backups once they are available.
 
 ```sh
 $ curator --config curator.yml restore.yml
 ```
 
-Hangi snapshot'ın içinde hangi index ve kaç adet index var gibi merak ettiğiniz bilgiler olacaktır.
+Which snapshot will have the information you are interested in, such as which index and how many indexes are in it.
 
 ```sh
 GET http://localhost:9200/_snapshot/{snapshot_name}/_all?pretty 
 ```
 
-**Referanslar**
+**References**
 1. https://github.com/elastic/curator
 2. https://github.com/minsuk-heo/BigData/tree/master/ch07
 3. https://www.youtube.com/watch?v=FhdcT6BQrKI&t=15s
