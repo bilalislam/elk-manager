@@ -97,7 +97,7 @@ Which snapshot will have the information you are interested in, such as which in
 GET http://localhost:9200/_snapshot/{snapshot_name}/_all?pretty 
 ```
 
-You need to register elastic licence page and get basic license jsonfile when It expired to your ELK license .!!!! And run the link for license update.
+You need to register elastic license page and get basic license jsonfile when It expired to your ELK license .!!!! And run the link for license update.
 
 ```sh
 curl -XPUT 'http://localhost:9200/_xpack/license?acknowledge=true' -H "Content-Type: application/json" -d @license.json
