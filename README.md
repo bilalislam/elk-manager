@@ -36,7 +36,7 @@ To get a snapshot
 ```sh
 $ curator --config curator.yml snapshot.yml
 ```
-To remove a snapshot
+To remove a indices
 ```sh
 $ curator --config curator.yml delete_incides.yml
 ```
