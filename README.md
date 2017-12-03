@@ -7,7 +7,7 @@
   - Perform various actions on the items which remain in the actionable list.
 
 Curator is written in Python, so it is well supported almost all operating systems. Installation is a breeze with a 
-```sh $ pip install elasticsearch-curator ```. That provides you with the curator command that you can use. There’s also a Python API that you can access from your Python programs, but we only use the command line interface.
+```$ pip install elasticsearch-curator ```. That provides you with the curator command that you can use. There’s also a Python API that you can access from your Python programs, but we only use the command line interface.
 
 # Installation Steps
   - Operating Systemize ;
