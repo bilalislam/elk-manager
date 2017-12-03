@@ -1,4 +1,11 @@
 
+# What is Elastic Curator ?
+
+- Elasticsearch Curator helps you curate, or manage, your Elasticsearch indices and snapshots by:
+  - Obtaining the full list of indices (or snapshots) from the cluster, as the actionable list
+  - Iterate through a list of user-defined filters to progressively remove indices (or snapshots) from this actionable list as needed.
+  - Perform various actions on the items which remain in the actionable list.
+
 # Installation Steps
   - Operating Systemize ;
      - Elasticsearch 6.0.0
