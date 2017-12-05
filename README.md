@@ -113,6 +113,9 @@ You need to register elastic license page and get basic license jsonfile when It
 curl -XPUT 'http://localhost:9200/_xpack/license?acknowledge=true' -H "Content-Type: application/json" -d @license.json
 ```
 
+Finally , you can find repo on hub.docker.com like "ninjafx/elk-manager"
+
+
 **References**
 1. https://github.com/elastic/curator
 2. https://github.com/minsuk-heo/BigData/tree/master/ch07
