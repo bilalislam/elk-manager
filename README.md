@@ -9,11 +9,17 @@
 Curator is written in Python, so it is well supported almost all operating systems. Installation is a breeze with a 
 ```$ pip install elasticsearch-curator ```. That provides you with the curator command that you can use. There’s also a Python API that you can access from your Python programs, but we only use the command line interface.
 
+And basically you can find repo on hub.docker.com like "ninjafx/elk-manager"
+
+```sh
+docker pull ninjafx/elk-manager
+```
+
 # Installation Steps
   - Operating Systemize ;
      - Elasticsearch 6.0.0
      - Kibana 6.0.0
-     - Logstash 6.0.0  kurmalısınız. 
+     - Logstash 6.0.0. 
 
 The installation url has been descripted below. Packages will vary by OS. For example, if Centos is used and 'yum repo' is used for distribution like Ubuntu, then you need to install according to 'apt repo'.
 
@@ -112,9 +118,6 @@ You need to register elastic license page and get basic license jsonfile when It
 ```sh
 curl -XPUT 'http://localhost:9200/_xpack/license?acknowledge=true' -H "Content-Type: application/json" -d @license.json
 ```
-
-Finally , you can find repo on hub.docker.com like "ninjafx/elk-manager"
-
 
 **References**
 1. https://github.com/elastic/curator
