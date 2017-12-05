@@ -12,7 +12,7 @@ Curator is written in Python, so it is well supported almost all operating syste
 And basically you can find repo on hub.docker.com like "ninjafx/elk-manager"
 
 ```sh
-docker pull ninjafx/elk-manager
+$ docker pull ninjafx/elk-manager
 ```
 
 # Installation Steps
